@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suicide Prevention Hotline</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Fullscreen Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?hope,support') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #6A0DAD; /* Dark overlay */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            background: #ff4757;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s ease-in-out;
+            font-weight: bold;
+        }
+
+        .cta-btn:hover {
+            background: #e84118;
+            transform: scale(1.1);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #1B1F3B;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background: #ff4757;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section:nth-child(even) {
+            background: #f7f7f7;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            color: #ff4757;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-buttons a {
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: 0.3s;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .counselor {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .ai-therapist {
+            background: #3498db;
+            color: white;
+        }
+
+        .emergency {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* Hover Effects */
+        .floating-buttons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1B1F3B;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#signs">Signs of Suicide</a>
+        <a href="#help">How to Help</a>
+        <a href="#resources">Resources</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>You're Not Alone</h1>
+            <p>There is hope. There is help. We are here for you.</p>
+            <a href="emergency.html" class="cta-btn">Get Help Now</a>
+        </div>
+    </div>
+
+    <!-- Awareness Sections -->
+    <div class="section" id="signs">
+        <h2>Signs of Suicide</h2>
+        <p>Withdrawal from friends and family, loss of interest in activities, extreme mood swings, and talking about feeling hopeless or wanting to die are key warning signs.</p>
+    </div>
+
+    <div class="section" id="help">
+        <h2>How You Can Help</h2>
+        <p>Talk openly, listen without judgment, and encourage them to seek professional help. Your support can make a difference.</p>
+    </div>
+
+    <div class="section" id="resources">
+        <h2>Resources & Support</h2>
+        <p>Our trained professionals and AI therapist are available 24/7. Click below to get the help you need.</p>
+    </div>
+
+    <!-- Floating Help Buttons -->
+    <div class="floating-buttons">
+        <a href="/index" class="counselor">Talk to Human Counselor</a>
+        <a href="ai_therapist.html" class="ai-therapist">AI Therapist</a>
+        <a href="emergency.html" class="emergency">Emergency Button</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">© 2025 Suicide Prevention Hotline | You Matter</div>
+
+</body>
+</html>

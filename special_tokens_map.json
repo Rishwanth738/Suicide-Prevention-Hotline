@@ -13,11 +13,11 @@
     "rstrip": false,
     "single_word": false
   },
-  "pad_token": "</s>",
+  "pad_token": "<unk>",
   "unk_token": {
     "content": "<unk>",
     "lstrip": false,
-    "normalized": false,
+    "normalized": true,
     "rstrip": false,
     "single_word": false
   }

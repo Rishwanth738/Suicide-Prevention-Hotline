@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counselor - Suicide Prevention Hotline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .chat-box {
+            padding: 20px;
+            height: 400px;
+            overflow-y: scroll;
+            background-color: #f1f1f1;
+            flex-grow: 1;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+            display: flex;
+        }
+
+        .user-message {
+            background-color: #2ecc71;  /* Green background for user message */
+            color: white;
+            align-self: flex-start;  /* Align to the left */
+        }
+
+        .counselor-message {
+            background-color: #3498db;  /* Blue background for counselor message */
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-footer {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #ecf0f1;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 18%;
+            padding: 10px;
+            margin-left: 10px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            Counselor - Suicide Prevention Hotline
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Messages will appear here -->
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="response-input" placeholder="Type your response...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+        // Connect to the socket server
+        const socket = io.connect('http://127.0.0.1:5000'); // Adjust the URL as needed
+
+        const responseInput = document.getElementById('response-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatBox = document.getElementById('chat-box');
+
+        // Listen for incoming user messages
+        socket.on('user_message', (message) => {
+            displayMessage(message, 'user');
+        });
+
+        // Send response back to the user when Enter is pressed
+        responseInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const response = responseInput.value.trim();
+                if (response !== "") {
+                    socket.emit('counselor_message', response);
+                    displayMessage(response, 'counselor');
+                    responseInput.value = '';
+                }
+            }
+        });
+
+        // Send response when Send button is clicked
+        sendBtn.addEventListener('click', () => {
+            const response = responseInput.value.trim();
+            if (response !== "") {
+                socket.emit('counselor_message', response);
+                displayMessage(response, 'counselor');
+                responseInput.value = '';
+            }
+        });
+        
+        // Display message in the chat box
+        function displayMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'counselor-message');
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to latest message
+        }
+
+    </script>
+
+</body>
+</html>
